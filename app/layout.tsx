@@ -10,6 +10,8 @@ import type { RootLayoutProps } from "@/types";
 import { cn } from "@/lib/utils";
 import metadata from "./metadata";
 import "@/style/globals.css";
+import SplashCursor from "@/components/SplashCursor";
+import GlowingCursorOrb from "@/components/ui/GlowingCursorOrb";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
 import SchemaScripts from "@/components/SchemaScripts";
 
@@ -23,6 +25,14 @@ const layout = ({ children }: RootLayoutProps) => {
         )}
         suppressHydrationWarning={true}
       >
+        <SplashCursor
+          SPLAT_RADIUS={0.04}
+          SPLAT_FORCE={1000}
+          DENSITY_DISSIPATION={5.8}
+          VELOCITY_DISSIPATION={3.2}
+          CURL={1.5}
+        />
+        <GlowingCursorOrb />
         <SchemaScripts schemas={[personSchema, websiteSchema, siteNavigationSchema]} />
         <HighlightBackground>
           <AccessibilityWidget />

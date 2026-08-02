@@ -8,6 +8,9 @@ import {
   useSpring
 } from "framer-motion";
 import { memo, useRef, useEffect, useCallback } from "react";
+import dynamic from "next/dynamic";
+
+const DarkVeil = dynamic(() => import("@/components/DarkVeil"), { ssr: false });
 
 const HighlightBackground = ({ children }: RootLayoutProps) => {
   const mouseX = useMotionValue(0);
@@ -45,6 +48,18 @@ const HighlightBackground = ({ children }: RootLayoutProps) => {
     >
       {/* Deep Midnight Background & Ambient Radial Glows */}
       <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+        {/* Subtle DarkVeil Shader Background */}
+        <div className="absolute inset-0 opacity-[0.18] mix-blend-screen pointer-events-none">
+          <DarkVeil
+            speed={0.25}
+            warpAmount={0.25}
+            noiseIntensity={0.015}
+            scanlineIntensity={0.12}
+            scanlineFrequency={0.015}
+            resolutionScale={0.75}
+          />
+        </div>
+
         {/* Top-right subtle cyan ambient glow */}
         <div className="absolute -top-32 -right-32 w-[35rem] h-[35rem] bg-cyan-500/10 rounded-full filter blur-[140px]" />
         
