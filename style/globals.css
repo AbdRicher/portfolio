@@ -128,3 +128,18 @@
     }
   }
 }
+
+/* Hide default cursor on desktop/fine-pointer devices so only custom cursor is active */
+@media (pointer: fine) {
+  html,
+  body,
+  body *,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: none !important;
+  }
+}

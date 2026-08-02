@@ -106,6 +106,19 @@ export default function GlowingCursorOrb() {
           }}
         />
       </motion.div>
+
+      {/* Precision Center Pinpoint */}
+      <motion.div
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: '-50%',
+          translateY: '-50%',
+        }}
+      >
+        <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_6px_#38bdf8]" />
+      </motion.div>
     </div>
   );
 }
