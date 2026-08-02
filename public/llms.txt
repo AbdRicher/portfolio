@@ -5,7 +5,7 @@ Hafiz Abdullah Amjad is a Full-Stack Software Engineer and AI enthusiast with ex
 
 ## Core Links
 - [Portfolio Home](https://abdullah-amjad.space/): Introduction, engineering philosophy, and featured projects.
-- [Projects](https://abdullah-amjad.space/#projects): Production projects including Lumina (Agentic AI Tutor), Bulk Shopify Sync Engine, Bookify, and Enterprise CRMs.
-- [Experience](https://abdullah-amjad.space/#experience): Work history at Integriti Global, IPS Technologies, and UMT BSCS honors.
-- [Tech Stack](https://abdullah-amjad.space/#skills): TypeScript, Python, FastAPI, Next.js, LangGraph, PostgreSQL, Docker, Shopify Functions.
-- [Contact](https://abdullah-amjad.space/#contact): Get in touch for engineering roles and collaborations.
+- [Projects](https://abdullah-amjad.space/projects): Production projects including Lumina (Agentic AI Tutor), Bulk Shopify Sync Engine, Bookify, and Enterprise CRMs.
+- [Experience](https://abdullah-amjad.space/experience): Work history at Integriti Global, IPS Technologies, and UMT BSCS honors.
+- [Tech Stack](https://abdullah-amjad.space/skills): TypeScript, Python, FastAPI, Next.js, LangGraph, PostgreSQL, Docker, Shopify Functions.
+- [Contact](https://abdullah-amjad.space/contact): Get in touch for engineering roles and collaborations.
