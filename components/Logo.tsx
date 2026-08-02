@@ -2,13 +2,27 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 
 const Logo = ({ onClick }: { onClick?: () => void; }) => {
+    const pathname = usePathname();
+
+    const handleClick = useCallback((e: React.MouseEvent) => {
+        if (onClick) onClick();
+        if (pathname === '/' || pathname === '') {
+            const homeElem = document.getElementById('home');
+            if (homeElem) {
+                e.preventDefault();
+                homeElem.scrollIntoView({ behavior: 'smooth' });
+                window.history.pushState(null, '', '/#home');
+            }
+        }
+    }, [onClick, pathname]);
+
     return (
-        <Link href="/#home" className="flex items-center space-x-2 z-50 group">
+        <Link href="/#home" onClick={handleClick} className="flex items-center space-x-2 z-50 group">
             <motion.div
-                onClick={onClick}
                 className="font-mono font-bold text-xl sm:text-2xl tracking-tight text-white flex items-center"
                 whileHover={{
                     scale: 1.05,

@@ -1,16 +1,20 @@
 "use client";
 
-import { memo, useState, useEffect } from "react";
+import { memo, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SocialLinks from "./SocialLinks";
 import NavLinks from "./NavLinks";
 import Logo from "../Logo";
 import { navLinks } from "@/constants";
 import Link from "next/link";
+import useIsActiveLink from "@/hooks/useIsActiveLink";
+import { usePathname } from "next/navigation";
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
+    const isActive = useIsActiveLink();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,6 +27,20 @@ const NavBar = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith("/#") || href.startsWith("#")) {
+            const targetId = href.replace("/#", "").replace("#", "");
+            if (pathname === "/" || pathname === "") {
+                const element = document.getElementById(targetId);
+                if (element) {
+                    e.preventDefault();
+                    element.scrollIntoView({ behavior: "smooth" });
+                    window.history.pushState(null, "", `/#${targetId}`);
+                }
+            }
+        }
+    }, [pathname]);
 
     return (
         <header
@@ -37,17 +55,28 @@ const NavBar = () => {
                 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-                    {navLinks.map((item) => (
-                        <Link key={item.href} href={item.href}>
-                            <motion.span
-                                className="text-sm font-medium px-3.5 py-2 rounded-md text-slate-300 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all duration-200 block"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                    {navLinks.map((item) => {
+                        const active = isActive(item.href);
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={(e) => handleNavClick(e, item.href)}
                             >
-                                {item.label}
-                            </motion.span>
-                        </Link>
-                    ))}
+                                <motion.span
+                                    className={`text-sm font-medium px-3.5 py-2 rounded-md transition-all duration-200 block ${
+                                        active
+                                            ? "text-cyan-400 bg-cyan-500/10 shadow-[0_0_12px_rgba(6,182,212,0.2)]"
+                                            : "text-slate-300 hover:text-cyan-400 hover:bg-cyan-500/5"
+                                    }`}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    {item.label}
+                                </motion.span>
+                            </Link>
+                        );
+                    })}
                     <div className="pl-3">
                         <Link
                             href="/resume"
