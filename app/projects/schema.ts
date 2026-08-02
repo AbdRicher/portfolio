@@ -1,18 +1,17 @@
 import { hostedUrl } from "@/constants";
 import { projects } from "@/constants/projects";
-import { skills } from "@/constants/techData";
 
 export const projectsPageSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "@id": `${hostedUrl}/projects#projectspage`,
   url: `${hostedUrl}/projects`,
-  name: "Projects Portfolio",
-  description: "Portfolio of web development projects featuring full-stack applications and innovative solutions.",
+  name: "Projects & Architecture Portfolio",
+  description: "Portfolio of full-stack web platforms, Agentic AI tutors, enterprise CRMs, and Shopify applications.",
   mainEntity: {
     "@type": "ItemList",
     "@id": `${hostedUrl}/projects#projectslist`,
-    name: "Web Development Projects",
+    name: "Software Projects",
     numberOfItems: projects.length,
     itemListElement: projects.map((project, index) => ({
       "@type": "ListItem",
@@ -22,12 +21,12 @@ export const projectsPageSchema = {
         "@id": `${hostedUrl}/projects#project-${index}`,
         name: project.title,
         description: project.description,
-        url: project.githubLink,
+        url: project.githubLink || hostedUrl,
         applicationCategory: "WebApplication",
-        programmingLanguage: project.technologies.map(techIndex => skills[techIndex]?.name).filter(Boolean),
+        programmingLanguage: project.techStack || [],
         codeRepository: project.githubLink,
         screenshot: `${hostedUrl}${project.thumbnail}`,
-        featureList: project.achievements?.slice(0, 5) || []
+        featureList: project.achievements || []
       }
     }))
   },

@@ -37,7 +37,7 @@ const ProjectModal = ({ isOpen, project, setOpen }: ProjectModelProps) => {
     }, [project]);
 
     const MemoizedTechnologies = useMemo(() => {
-        if (!project) return null;
+        if (!project || !project.technologies) return null;
 
         return project.technologies.map((techIndex, i) => <TechnologyIcon key={i} techIndex={techIndex} />);
     }, [project]);
@@ -48,24 +48,26 @@ const ProjectModal = ({ isOpen, project, setOpen }: ProjectModelProps) => {
 
     return (
         <Dialog open={isOpen} onOpenChange={setOpen} modal>
-            <DialogContent className="sm:max-w-[1000px] max-h-[90vh] overflow-y-auto">
+            <DialogContent className="sm:max-w-[1000px] max-h-[90vh] overflow-y-auto bg-[#090f24] border-cyan-500/30 text-white">
                 <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold">{project.title}</DialogTitle>
+                    <DialogTitle className="text-2xl font-bold text-white">{project.title}</DialogTitle>
                     <DialogDescription>
-                        <span className="text-muted-foreground">{project.description}</span>
+                        <span className="text-slate-300">{project.description}</span>
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
-                    <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-                        <Image
-                            src={project.thumbnail}
-                            alt={project.title}
-                            loading="lazy"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
-                    {project.showGitStats && githubStats && (
+                    {project.thumbnail && (
+                        <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+                            <Image
+                                src={project.thumbnail}
+                                alt={project.title}
+                                loading="lazy"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                    )}
+                    {project.showGitStats && githubStats && project.githubLink && (
                         <div className="grid grid-cols-4 gap-3">
                             <Link href={`${project.githubLink}`}>
                                 <div className="flex items-center gap-2 bg-secondary/50 rounded-lg p-3">
@@ -135,44 +137,50 @@ const ProjectModal = ({ isOpen, project, setOpen }: ProjectModelProps) => {
                             </Link>
                         </div>
                     )}
-                    <article>
+                    {project.detailedDescription && (
+                        <article>
+                            <div className="space-y-2">
+                                <h3 className="text-lg font-semibold text-white">Project Details</h3>
+                                <p className="text-sm text-slate-300">{project.detailedDescription}</p>
+                            </div>
+                        </article>
+                    )}
+                    {MemoizedTechnologies && (
                         <div className="space-y-2">
-                            <h3 className="text-lg font-semibold">Project Details</h3>
-                            <p className="text-sm text-muted-foreground">{project.detailedDescription}</p>
+                            <h3 className="text-lg font-semibold text-white">Technologies Used</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {MemoizedTechnologies}
+                            </div>
                         </div>
-                    </article>
-                    <div className="space-y-2">
-                        <h3 className="text-lg font-semibold">Technologies Used</h3>
-                        <div className="flex flex-wrap gap-2">
-                            {MemoizedTechnologies}
-                        </div>
-                    </div>
+                    )}
                     {project.achievements && project.achievements.length > 0 && (
                         <div className="space-y-2">
-                            <h3 className="text-lg font-semibold">Key Achievements And Features</h3>
-                            <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
+                            <h3 className="text-lg font-semibold text-white">Key Achievements And Features</h3>
+                            <ul className="list-inside list-disc space-y-1 text-sm text-slate-300">
                                 {project.achievements.map((achievement, index) => (
                                     <li key={index}>{achievement}</li>
                                 ))}
                             </ul>
                         </div>
                     )}
-                    <Separator />
+                    <Separator className="bg-slate-800" />
                     <div className="flex flex-wrap justify-between gap-2">
                         {project.link && (
-                            <Button asChild className="flex-1">
+                            <Button asChild className="flex-1 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold">
                                 <Link href={project.link} prefetch={false} target="_blank" rel="noopener noreferrer">
                                     Visit Project
                                 </Link>
                             </Button>
                         )}
-                        <Button variant="outline" asChild className="flex-1">
-                            <Link href={project.githubLink} prefetch={false} target="_blank" rel="noopener noreferrer">
-                                View on GitHub
-                            </Link>
-                        </Button>
+                        {project.githubLink && (
+                            <Button variant="outline" asChild className="flex-1 border-slate-700 hover:border-cyan-400">
+                                <Link href={project.githubLink} prefetch={false} target="_blank" rel="noopener noreferrer">
+                                    View on GitHub
+                                </Link>
+                            </Button>
+                        )}
                         {project.demoLink && (
-                            <Button variant="secondary" asChild className="flex-1">
+                            <Button variant="secondary" asChild className="flex-1 bg-slate-800 hover:bg-slate-700 text-white">
                                 <Link href={project.demoLink} prefetch={false} target="_blank" rel="noopener noreferrer">
                                     {project.isLinkedin ? "View on LinkedIn" : "Watch Demo"}
                                 </Link>

@@ -3,7 +3,7 @@ import HighlightBackground from "@/components/HighlightBackground";
 import ThemeProvider from "@/components/layout/ThemeProvider";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
-import { firaCode, sourceCodePro } from "./fonts";
+import { poppins } from "./fonts";
 import Footer from "@/components/layout/Footer";
 import NavBar from "@/components/layout/NavBar";
 import type { RootLayoutProps } from "@/types";
@@ -19,8 +19,7 @@ const layout = ({ children }: RootLayoutProps) => {
       <body
         className={cn(
           "antialiased relative remove-scrollbar",
-          firaCode.className,
-          sourceCodePro.className,
+          poppins.className
         )}
         suppressHydrationWarning={true}
       >

@@ -19,21 +19,23 @@ const ProjectCard = ({ project, onViewDetails }: ProjectCardProps) => {
   const { hoveredItem, rotate, translateX, handleHover, handleMouseMove } = useTooltip();
 
   return (
-    <div className="rounded-xl group/bento transition duration-300 custom-shadow p-4 bg-black flex flex-col h-full">
-      <motion.div className="overflow-hidden rounded-md mb-4" initial="rest" whileHover="hover" animate="rest">
-        <motion.div variants={imageVariants}>
-          <Image
-            src={project.thumbnail || "/placeholder.svg"}
-            alt={project.title}
-            height={200}
-            width={300}
-            className="w-full h-44 md:h-56 object-cover"
-          />
+    <div className="rounded-xl group/bento transition duration-300 custom-shadow p-4 bg-[#0b1329]/80 border border-cyan-500/20 flex flex-col h-full">
+      {project.thumbnail && (
+        <motion.div className="overflow-hidden rounded-md mb-4" initial="rest" whileHover="hover" animate="rest">
+          <motion.div variants={imageVariants}>
+            <Image
+              src={project.thumbnail}
+              alt={project.title}
+              height={200}
+              width={300}
+              className="w-full h-44 md:h-56 object-cover"
+            />
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
       <div className="flex flex-col flex-grow">
         <motion.h3
-          className="font-sans font-bold text-lg text-primary mb-2"
+          className="font-sans font-bold text-lg text-white mb-2"
           initial="rest"
           whileHover="hover"
           animate="rest"
@@ -41,23 +43,41 @@ const ProjectCard = ({ project, onViewDetails }: ProjectCardProps) => {
         >
           {project.title}
         </motion.h3>
-        <p className="text-sm text-muted-foreground mb-4 flex-grow">{project.description}</p>
-        <div className="mb-4">
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, 3).map((techIndex, index) => (
-              <TechnologyIcon key={index} techIndex={techIndex} />
-            ))}
-            {project.technologies.length > 3 && (
-              <button
-                onClick={() => onViewDetails(project)}
-                className="text-xs text-blue-500 cursor-pointer hover:text-blue-600 transition-colors duration-300"
-              >
-                Show all..
-              </button>
-            )}
-
+        <p className="text-sm text-slate-300 mb-4 flex-grow">{project.description}</p>
+        
+        {project.technologies && project.technologies.length > 0 && (
+          <div className="mb-4">
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.slice(0, 3).map((techIndex, index) => (
+                <TechnologyIcon key={index} techIndex={techIndex} />
+              ))}
+              {project.technologies.length > 3 && (
+                <button
+                  onClick={() => onViewDetails(project)}
+                  className="text-xs text-cyan-400 cursor-pointer hover:text-cyan-300 transition-colors duration-300"
+                >
+                  Show all..
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        )}
+
+        {project.techStack && project.techStack.length > 0 && !project.technologies && (
+          <div className="mb-4">
+            <div className="flex flex-wrap gap-1.5">
+              {project.techStack.slice(0, 3).map((tech, index) => (
+                <span
+                  key={index}
+                  className="px-2 py-0.5 rounded text-xs font-mono bg-[#070d1e] text-slate-300 border border-slate-700"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         <motion.div className="flex flex-wrap gap-x-2 gap-y-2" initial="rest" whileHover="hover" animate="rest">
           {project.link && (
             <ProjectButton
@@ -76,21 +96,23 @@ const ProjectCard = ({ project, onViewDetails }: ProjectCardProps) => {
               />
             </ProjectButton>
           )}
-          <ProjectButton
-            handleMouseMove={handleMouseMove}
-            href={project.githubLink}
-            icon="/assets/social/github.svg"
-            text="GitHub"
-            onMouseEnter={() => handleHover("github")}
-            onMouseLeave={() => handleHover(null)}
-          >
-            <AnimatedTooltip
-              show={hoveredItem === "github"}
-              text={project.githubLink}
-              rotate={rotate}
-              translateX={translateX}
-            />
-          </ProjectButton>
+          {project.githubLink && (
+            <ProjectButton
+              handleMouseMove={handleMouseMove}
+              href={project.githubLink}
+              icon="/assets/social/github.svg"
+              text="GitHub"
+              onMouseEnter={() => handleHover("github")}
+              onMouseLeave={() => handleHover(null)}
+            >
+              <AnimatedTooltip
+                show={hoveredItem === "github"}
+                text={project.githubLink}
+                rotate={rotate}
+                translateX={translateX}
+              />
+            </ProjectButton>
+          )}
           {project.demoLink && (
             <ProjectButton
               handleMouseMove={handleMouseMove}
@@ -111,7 +133,7 @@ const ProjectCard = ({ project, onViewDetails }: ProjectCardProps) => {
           <motion.div variants={buttonVariants}>
             <button
               onClick={() => onViewDetails(project)}
-              className={cn(buttonBaseStyles, " cursor-pointer transition-colors duration-300 hover:bg-gray-600 hover:text-slate-500")}
+              className={cn(buttonBaseStyles, " cursor-pointer transition-colors duration-300 hover:bg-slate-800 hover:text-cyan-300")}
             >
               <Image width={10} height={10} src="/assets/icons/info.svg" alt="Info" className="w-3 h-3 mr-1" />
               More Details
@@ -123,5 +145,4 @@ const ProjectCard = ({ project, onViewDetails }: ProjectCardProps) => {
   );
 };
 
-export default memo(ProjectCard)
-
+export default memo(ProjectCard);

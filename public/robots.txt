@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://abdullah-amjad.space
+
+# Sitemaps
+Sitemap: https://abdullah-amjad.space/sitemap.xml

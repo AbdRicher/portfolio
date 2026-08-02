@@ -4,117 +4,122 @@
 @config '../tailwind.config.ts';
 
 @theme {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 240 5.9% 10%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --background: 226 71% 5%; /* #050814 Deep Space Navy */
+  --foreground: 210 40% 98%;
+  --card: 226 55% 8%; /* #090f23 */
+  --card-foreground: 210 40% 98%;
+  --popover: 226 55% 8%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 191 97% 53%; /* #00f2fe Neon Cyan */
+  --primary-foreground: 226 71% 5%;
+  --secondary: 217 91% 60%; /* #38bdf8 Sky Blue */
+  --secondary-foreground: 210 40% 98%;
+  --muted: 224 44% 16%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 191 97% 53%;
+  --accent-foreground: 226 71% 5%;
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
-  --chart-1: 220 70% 50%;
-  --chart-2: 160 60% 45%;
-  --chart-3: 30 80% 55%;
-  --chart-4: 280 65% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 224 44% 18%;
+  --input: 224 44% 18%;
+  --ring: 191 97% 53%; /* Neon cyan ring */
+  --chart-1: 191 97% 53%;
+  --chart-2: 217 91% 60%;
+  --chart-3: 262 83% 58%;
+  --chart-4: 160 84% 39%;
   --chart-5: 340 75% 55%;
-  --blue-start: #3b82f6;
-  --purple-end: #8b5cf6;
+  --cyan-start: #00f2fe;
+  --blue-end: #3b82f6;
 }
 
-@keyframes accordion-down {
-  from {
-    height: 0;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
   }
-
-  to {
-    height: var(--radix-accordion-content-height);
-  }
-}
-
-@keyframes accordion-up {
-  from {
-    height: var(--radix-accordion-content-height);
-  }
-
-  to {
-    height: 0;
+  50% {
+    transform: translateY(-10px) rotate(1deg);
   }
 }
 
-@keyframes fadeIn {
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scanline {
   0% {
-    opacity: 0;
+    background-position: 0 0;
   }
-
   100% {
-    opacity: 1;
+    background-position: 0 100%;
   }
 }
 
-@keyframes slideUp {
-  0% {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-.bg-blue-purple {
-  background-image: linear-gradient(to right, var(--blue-start), var(--purple-end));
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
 }
 
-.custom-shadow {
-  transition: box-shadow 0.3s ease;
+.bg-cyan-glow {
+  box-shadow: 0 0 35px rgba(0, 242, 254, 0.18);
 }
 
-.custom-shadow:hover {
-  box-shadow: 4px 3px 7px 3px rgba(105, 3, 121, 0.25);
+.bg-cyan-gradient {
+  background: linear-gradient(135deg, #00f2fe 0%, #0ea5e9 50%, #3b82f6 100%);
 }
 
+.border-cyan-glow {
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+}
 
+.border-cyan-glow:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+}
+
+.custom-card {
+  background: rgba(11, 18, 36, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-card:hover {
+  background: rgba(14, 23, 47, 0.85);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 8px 30px rgba(0, 242, 254, 0.12);
+  transform: translateY(-3px);
+}
 
 @layer base {
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: #050814;
+    color: #f1f5f9;
+    font-family: var(--font-poppins), sans-serif;
   }
 
   .remove-scrollbar::-webkit-scrollbar {
     width: 0;
     height: 0;
-    border-radius: 0;
   }
 
-  .remove-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .remove-scrollbar::-webkit-scrollbar-thumb {
-    background: transparent;
-    border-radius: 0;
-  }
-
-  .remove-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: transparent;
+  .remove-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   .heading {
-    @apply text-[1.875rem] font-[900] text-center mb-4;
+    @apply text-[1.875rem] font-extrabold tracking-tight text-center mb-4 text-white;
   }
 
   @media (min-width: 640px) {

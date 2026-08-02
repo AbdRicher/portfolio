@@ -17,16 +17,16 @@ const NavLink = ({
 }) => (
     <Link href={href}>
         <motion.span
-            className={`text-6xl sm:text-7xl lg:text-8xl tracking-tighter font-source-code-pro
+            className={`text-3xl sm:text-4xl font-mono font-semibold tracking-tight
             ${isActive
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600'
-                    : 'text-white hover:text-slate-600'} 
-            transition-all duration-300`}
-            initial={{ opacity: 0, x: 50 }}
+                    ? 'text-cyan-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.6)]'
+                    : 'text-slate-200 hover:text-cyan-300'} 
+            transition-all duration-300 block py-2`}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
-                delay: index * 0.1,
-                duration: 0.5,
+                delay: index * 0.08,
+                duration: 0.4,
                 ease: 'easeOut'
             }}
         >
@@ -36,19 +36,19 @@ const NavLink = ({
 );
 
 const NavLinks = ({ setSheetOpen }: { setSheetOpen: Dispatch<SetStateAction<boolean>>; }) => {
-    const isActive = useIsActiveLink()
+    const isActive = useIsActiveLink();
 
     const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
         const target = e.target as HTMLElement;
-        if (target.tagName === 'SPAN') {
+        if (target.tagName === 'SPAN' || target.tagName === 'A') {
             setSheetOpen(false);
         }
     }, [setSheetOpen]);
 
     return (
         <motion.nav
-            className="flex flex-col mt-32 sm:mt-12 flex-grow"
-            initial={{ opacity: 0, y: 20 }}
+            className="flex flex-col mt-8 space-y-2"
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             onClick={handleClick}
@@ -63,14 +63,6 @@ const NavLinks = ({ setSheetOpen }: { setSheetOpen: Dispatch<SetStateAction<bool
                     {label}
                 </NavLink>
             ))}
-            <NavLink
-                key={'/resume'}
-                href={'/resume'}
-                isActive={isActive('/resume')}
-                index={navLinks.length}
-            >
-                Resume
-            </NavLink>
         </motion.nav>
     );
 };

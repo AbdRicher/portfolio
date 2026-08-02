@@ -1,34 +1,34 @@
 import { Metadata } from "next";
 import OpenSource from "../../components/OpenSource";
-import { canonicalUrl } from "@/constants";
+import { canonicalUrl, profile } from "@/constants";
 import { openSourcePageSchema, contributionsSchema } from './schema';
 import SchemaScripts from "@/components/SchemaScripts";
 
 export const metadata: Metadata = {
     title: "Open Source",
-    description: "Check out my contributions to open source projects. See how I collaborate with the developer community and share code for public benefit.",
+    description: `Check out open source contributions by ${profile.name}.`,
     openGraph: {
-        title: "Open Source Contributions | Muhammed Sinan",
-        description: "Exploring my open source journey and contributions to the developer community",
+        title: `Open Source Contributions | ${profile.name}`,
+        description: "Open source journey and contributions to the developer community",
         images: [
             {
-                url: "/screenshots/opensource-og.png.png",
+                url: "/assets/images/abdullah-portrait.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Open Source Contributions",
-                type: "image/png",
+                type: "image/jpeg",
             }
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Open Source Contributions | Muhammed Sinan",
-        description: "Exploring my open source journey and contributions to the developer community",
-        images: ["/screenshots/opensource-og.png.png"],
+        title: `Open Source Contributions | ${profile.name}`,
+        description: "Open source journey and contributions to the developer community",
+        images: ["/assets/images/abdullah-portrait.jpg"],
     },
     alternates: {
-        canonical:  `${canonicalUrl}/open-source`,
-      },
+        canonical: `${canonicalUrl}/open-source`,
+    },
 };
 
 const OpenSourcePage = () => {

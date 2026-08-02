@@ -1,30 +1,28 @@
 import { Metadata } from 'next';
-import Experience from '@/components/Experience';
-import { canonicalUrl } from '@/constants';
-import { experiencePageSchema, workExperienceSchema } from './schema';
-import SchemaScripts from '@/components/SchemaScripts';
+import ExperienceSection from '@/components/home/ExperienceSection';
+import { canonicalUrl, profile } from '@/constants';
 
 export const metadata: Metadata = {
-    title: "Experience | Muhammed Sinan",
-    description: "Explore my professional journey as a full-stack developer. From freelance projects to open-source contributions, see my growth and achievements.",
+    title: "Experience",
+    description: `Professional career journey of ${profile.name} - Full-Stack Software Engineer at Integriti Global, BSCS from UMT (CGPA: 3.85).`,
     openGraph: {
-        title: "Experience | Muhammed Sinan",
-        description: "Professional journey and achievements as a full-stack developer",
+        title: `Experience | ${profile.name}`,
+        description: `Professional journey of ${profile.name} - ${profile.title}`,
         images: [
             {
-                url: "/screenshots/experience-og.png",
+                url: "/assets/images/abdullah-portrait.jpg",
                 width: 1200,
                 height: 630,
                 alt: "Professional Experience Timeline",
-                type: "image/png",
+                type: "image/jpeg",
             }
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Experience | Muhammed Sinan",
-        description: "Professional journey and achievements as a full-stack developer",
-        images: ["/screenshots/experience-og.png"],
+        title: `Experience | ${profile.name}`,
+        description: `Professional journey of ${profile.name} - ${profile.title}`,
+        images: ["/assets/images/abdullah-portrait.jpg"],
     },
     alternates: {
         canonical: `${canonicalUrl}/experience`,
@@ -33,10 +31,9 @@ export const metadata: Metadata = {
 
 const ExperiencePage = () => {
     return (
-        <>
-            <SchemaScripts schemas={[experiencePageSchema, workExperienceSchema]} />
-            <Experience />
-        </>
+        <div className="w-full pt-6">
+            <ExperienceSection />
+        </div>
     );
 };
 

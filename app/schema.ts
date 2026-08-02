@@ -5,25 +5,24 @@ export const personSchema = {
   "@type": "Person",
   "@id": `${hostedUrl}#person`,
   name: profile.name,
-  alternateName: "sinanptm",
-  jobTitle: "Full Stack Web Developer",
-  headline: "MERN Stack & Modern Web Technologies Specialist",
-  description: "Innovative self-taught developer creating scalable web applications with cutting-edge technologies.",
-  image: `${hostedUrl}/assets/profile-image.jpg`,
+  alternateName: "AbdRicher",
+  jobTitle: profile.title,
+  headline: "Full-Stack Software Engineer & Agentic AI Specialist",
+  description: profile.summary,
+  image: `${hostedUrl}/assets/images/abdullah-portrait.jpg`,
   url: hostedUrl,
-  birthDate: "2005-06-02",
-  nationality: "Indian",
+  nationality: "Pakistani",
   sameAs: [
     profile.gitHub,
-    profile.linkedin,
-    profile.x,
-    profile.instagram
+    profile.linkedin
   ],
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Kozhikode",
-    addressRegion: "Kerala",
-    addressCountry: "IN"
+    addressCountry: "PK"
+  },
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "University of Management and Technology"
   }
 };
 
@@ -33,18 +32,18 @@ export const websiteSchema = {
   "@id": `${hostedUrl}#website`,
   url: hostedUrl,
   name: `${profile.name} | Portfolio`,
-  description: "Portfolio showcasing full stack development expertise across modern web technologies.",
+  description: profile.summary,
   author: { "@id": `${hostedUrl}#person` },
   publisher: { "@id": `${hostedUrl}#person` },
   inLanguage: "en-US",
-  copyrightYear: new Date().getFullYear(),
-  datePublished: "2025-01-01",
+  copyrightYear: 2026,
+  datePublished: "2026-01-01",
   dateModified: new Date().toISOString()
 };
 
 export const siteNavigationSchema = {
   "@context": "https://schema.org",
   "@type": "SiteNavigationElement",
-  "name": navLinks.map(el => el.label),
-  "url": navLinks.map(el => `${hostedUrl}/${el.href}`)
+  name: navLinks.map((el) => el.label),
+  url: navLinks.map((el) => `${hostedUrl}${el.href}`)
 };

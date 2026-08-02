@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://muhammedsinan.space',
+  siteUrl: 'https://abdullah-amjad.space',
   generateRobotsTxt: true,
   exclude: [],
   transform: async (config, path) => {

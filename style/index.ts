@@ -1,10 +1,10 @@
 import { Variants } from "framer-motion";
 
 export const KEYBOARD_THEME = {
-  keyGradient: "from-purple-800 via-indigo-800 to-violet-900",
-  hoverKeyGradient: "from-purple-700 via-indigo-700 to-violet-800",
-  glowColor: "rgba(139, 92, 246, 0.5)",
-  unfocusedGlowColor: "rgba(139, 92, 246, 0.2)"
+  keyGradient: "from-cyan-900 via-blue-900 to-slate-900",
+  hoverKeyGradient: "from-cyan-800 via-blue-800 to-slate-800",
+  glowColor: "rgba(56, 189, 248, 0.5)",
+  unfocusedGlowColor: "rgba(56, 189, 248, 0.2)"
 };
 
 export const itemVariants: Variants = {
@@ -55,7 +55,6 @@ export const techIconVariants: Variants = {
   },
 };
 
-
 export const textVariants: Variants = {
   hidden: { y: -20, opacity: 0 },
   visible: {
@@ -68,15 +67,14 @@ export const textVariants: Variants = {
   }
 };
 
-
 export const titleVariants: Variants = {
   rest: { y: 0 },
-  hover: { y: -5 }
+  hover: { y: -3 }
 };
 
 export const buttonVariants: Variants = {
-  rest: { y: 0, opacity: 0.8 },
-  hover: { y: -3, opacity: 1 }
+  rest: { y: 0, opacity: 0.9 },
+  hover: { y: -2, opacity: 1 }
 };
 
 export const staggerVariants: Variants = {
@@ -93,14 +91,14 @@ export const staggerVariants: Variants = {
 };
 
 export const buttonHover = {
-  scale: 1.05,
+  scale: 1.04,
   transition: { duration: 0.2 }
 };
 
 export const staggerChildren: Variants = {
   visible: {
     transition: {
-      staggerChildren: 0.2
+      staggerChildren: 0.15
     }
   }
 };
@@ -127,38 +125,34 @@ export const paragraphVariants: Variants = {
   },
 };
 
-
 export const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
 export const fadeInLeft: Variants = {
-  hidden: { x: -50, opacity: 0 },
+  hidden: { x: -40, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
-    transition: { type: "spring", stiffness: 300, damping: 24 }
+    transition: { type: "spring", stiffness: 200, damping: 20 }
   }
 };
 
 export const fadeInRight: Variants = {
-  hidden: { x: 50, opacity: 0 },
+  hidden: { x: 40, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
-    transition: { type: "spring", stiffness: 300, damping: 24 }
+    transition: { type: "spring", stiffness: 200, damping: 20 }
   }
 };
 
-
-export const buttonBaseStyles = `inline-flex items-center justify-center rounded-md text-sm font-medium
-                                 transition-colors focus-visible:outline-none focus-visible:ring-2
-                                 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50
-                                 disabled:pointer-events-none bg-secondary text-secondary-foreground 
-                                 hover:bg-secondary/80  h-6  py-0.5 px-3 text-xs`;
-
-
+export const buttonBaseStyles = `inline-flex items-center justify-center rounded-lg text-xs font-medium
+                                 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2
+                                 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 disabled:opacity-50
+                                 disabled:pointer-events-none bg-[#0e172e] border border-cyan-500/30 text-cyan-300
+                                 hover:bg-cyan-500/15 hover:border-cyan-400 hover:text-white h-7 py-1 px-3`;
 
 export const letterVariants: Variants = {
   hidden: { y: 48, opacity: 0 },
@@ -191,12 +185,12 @@ export const timelineLineVariants: Variants = {
 };
 
 export const cardVariants: Variants = {
-  hidden: (isEven: boolean) => ({ opacity: 0, y: 60, x: isEven ? -60 : 60, scale: 0.96 }),
+  hidden: (isEven: boolean) => ({ opacity: 0, y: 40, x: isEven ? -40 : 40, scale: 0.97 }),
   visible: { opacity: 1, y: 0, x: 0, scale: 1, transition: { type: "spring", stiffness: 110, damping: 15 } },
-  hover: { scale: 1.025, boxShadow: "0 6px 48px 0 #9b87f522" }
+  hover: { scale: 1.02, boxShadow: "0 6px 36px 0 rgba(56, 189, 248, 0.2)" }
 };
 
 export const cardGlowVariants = {
   rest: { opacity: 0, scale: 1 },
-  hover: { opacity: 1, scale: 1.1, transition: { duration: 0.3 } },
+  hover: { opacity: 1, scale: 1.05, transition: { duration: 0.3 } },
 };

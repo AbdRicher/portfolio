@@ -1,4 +1,6 @@
-import { Fira_Code, Source_Code_Pro } from "next/font/google";
+import { Poppins } from "next/font/google";
 
-export const firaCode = Fira_Code({ subsets: ['latin'] });
-export const sourceCodePro = Source_Code_Pro({ subsets: ['latin'] });
+export const poppins = Poppins({ 
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] 
+});

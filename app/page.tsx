@@ -1,31 +1,21 @@
-import TypewriterEffect from "@/components/ui/typewriter-effect"
-import { TYPEWRITER_WORDS } from "@/constants"
-import About from "@/components/home/About"
-import Name from "@/components/home/Name"
-import SeoImage from "@/components/home/SeoImage"
-import { memo } from "react"
+import Hero from "@/components/home/Hero";
+import AboutSection from "@/components/home/AboutSection";
+import SkillsSection from "@/components/home/SkillsSection";
+import ProjectsSection from "@/components/home/ProjectsSection";
+import ExperienceSection from "@/components/home/ExperienceSection";
+import EducationSection from "@/components/home/EducationSection";
+import ContactSection from "@/components/home/ContactSection";
 
-const HomePage = () => {
+export default function Home() {
   return (
-    <main className="flex flex-col pt-12">
-      <SeoImage />
-
-      <section className="w-full mx-auto sm:px-16 px-6 pb-10">
-        <div className="pb-7 mx-auto flex flex-row items-start gap-5">
-          <div>
-            <header>
-              <Name />
-            </header>
-            <article>
-              <TypewriterEffect words={TYPEWRITER_WORDS} />
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <About />
+    <main className="flex flex-col items-center justify-between w-full overflow-hidden">
+      <Hero />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ExperienceSection />
+      <EducationSection />
+      <ContactSection />
     </main>
-  )
+  );
 }
-
-export default memo(HomePage)

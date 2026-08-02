@@ -1,38 +1,40 @@
 import { Metadata } from "next";
-import Contact from "../../components/Contact";
-import { canonicalUrl } from "@/constants";
+import ContactSection from "@/components/home/ContactSection";
+import { canonicalUrl, profile } from "@/constants";
 
 export const metadata: Metadata = {
-  title: "Contact Me | Muhammed Sinan",
-  description: "Get in touch with me for web development projects, collaborations, or any inquiries. Let’s create something amazing together!",
+  title: "Contact",
+  description: `Get in touch with ${profile.name} - ${profile.title}. Open for full-stack engineering, agentic AI development, and Shopify consulting.`,
   openGraph: {
-    title: "Contact | Muhammed Sinan",
-    description: "Reach out to discuss your next project or for any inquiries. I’m always excited to connect with like-minded professionals and clients.",
+    title: `Contact | ${profile.name}`,
+    description: "Let's connect! Reach out to discuss software engineering, agentic AI, or collaborations.",
     images: [
       {
-        url: "/screenshots/contact-og.png",
+        url: "/assets/images/abdullah-portrait.jpg",
         width: 1200,
         height: 630,
-        alt: "Contact Muhammed Sinan",
-        type: "image/png",
+        alt: `Contact ${profile.name}`,
+        type: "image/jpeg",
       }
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact | Muhammed Sinan",
-    description: "Let’s connect! Reach out to discuss web development, collaborations, or inquiries.",
-    images: ["/screenshots/contact-og.png"],
+    title: `Contact | ${profile.name}`,
+    description: "Let's connect! Reach out to discuss web development, collaborations, or inquiries.",
+    images: ["/assets/images/abdullah-portrait.jpg"],
   },
   alternates: {
     canonical: `${canonicalUrl}/contact`,
   },
 };
 
-const page = () => {
+const Page = () => {
   return (
-    <Contact />
+    <div className="w-full pt-6">
+      <ContactSection />
+    </div>
   );
-}
+};
 
-export default page;
+export default Page;

@@ -1,52 +1,16 @@
 {
-  "short_name": "Muhammed Sinan",
-  "name": "Muhammed Sinan Portfolio",
-  "description": "Full Stack Developer specializing in MERN stack development with expertise in building scalable web applications",
+  "short_name": "Abdullah Amjad",
+  "name": "Hafiz Abdullah Amjad Portfolio",
+  "description": "Full-Stack Software Engineer specializing in scalable web systems, Agentic AI, and Shopify apps",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#3E3E42",
-  "theme_color": "#d830dc",
+  "background_color": "#050814",
+  "theme_color": "#00f2fe",
   "icons": [
-    {
-      "src": "/icons/android-icon-36x36.png",
-      "sizes": "36x36",
-      "type": "image/png",
-      "density": "0.75",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/android-icon-48x48.png",
-      "sizes": "48x48",
-      "type": "image/png",
-      "density": "1.0",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/android-icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "density": "1.5",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/android-icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "density": "2.0",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/android-icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "density": "3.0",
-      "purpose": "any maskable"
-    },
     {
       "src": "/icons/android-icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "density": "4.0",
       "purpose": "any maskable"
     },
     {
@@ -54,20 +18,6 @@
       "sizes": "310x310",
       "type": "image/png",
       "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshots/desktop.png",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "/screenshots/mobile.png",
-      "sizes": "750x1334",
-      "type": "image/png",
-      "form_factor": "narrow"
     }
   ],
   "categories": [

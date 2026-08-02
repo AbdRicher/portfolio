@@ -30,7 +30,6 @@ const ThingCard = ({ name, image, tech, capabilities }: ThingsIDo) => {
                     className="object-contain"
                     loading="lazy"
                 />
-
             </motion.div>
 
             <motion.div className="space-y-8" variants={containerVariants}>
@@ -42,30 +41,32 @@ const ThingCard = ({ name, image, tech, capabilities }: ThingsIDo) => {
                     className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2 max-w-2xl"
                     variants={containerVariants}
                 >
-                    {tech.map((tech) => (
+                    {tech.map((techItem) => (
                         <motion.div
-                            key={tech.name}
+                            key={techItem.name}
                             className="relative aspect-square w-10 h-10 sm:w-14 sm:h-14 group"
-                            onMouseEnter={() => handleHover(tech.name)}
+                            onMouseEnter={() => handleHover(techItem.name)}
                             onMouseLeave={() => handleHover(null)}
                             onMouseMove={handleMouseMove}
                             variants={techIconVariants}
                             whileHover={{ scale: 1.1 }}
                         >
-                            <Image
-                                src={tech.url}
-                                alt={tech.name}
-                                fill
-                                sizes="(max-width: 768px) 2.5rem, (max-width: 1200px) 3.5rem, 2.5rem"
-                                priority={false}
-                                className="object-contain p-1 transition-transform duration-200"
-                            />
+                            {techItem.url && (
+                                <Image
+                                    src={techItem.url}
+                                    alt={techItem.name}
+                                    fill
+                                    sizes="(max-width: 768px) 2.5rem, (max-width: 1200px) 3.5rem, 2.5rem"
+                                    priority={false}
+                                    className="object-contain p-1 transition-transform duration-200"
+                                />
+                            )}
                             <AnimatedTooltip
                                 rotate={rotate}
                                 isLink={false}
                                 translateX={translateX}
-                                text={tech.name}
-                                show={hoveredItem === tech.name}
+                                text={techItem.name}
+                                show={hoveredItem === techItem.name}
                             />
                         </motion.div>
                     ))}
