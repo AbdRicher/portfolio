@@ -28,6 +28,23 @@ const NavBar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Prevent body scrolling when mobile menu is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen]);
+
+    // Close menu when route changes
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
+
     const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         if (href.startsWith("/#") || href.startsWith("#")) {
             const targetId = href.replace("/#", "").replace("#", "");
@@ -44,11 +61,14 @@ const NavBar = () => {
 
     return (
         <header
-            className={`sticky top-0 w-full z-50 transition-all duration-300 ${
-                scrolled
-                    ? "bg-[#050814]/85 backdrop-blur-md border-b border-cyan-500/10 shadow-lg shadow-black/40"
+            className={`sticky top-0 w-full z-[60] transition-all duration-300 ${
+                scrolled || isOpen
+                    ? "bg-[#050814] border-b border-cyan-500/10 shadow-lg shadow-black/40"
                     : "bg-transparent backdrop-blur-sm"
             }`}
+            style={{
+                backgroundColor: scrolled || isOpen ? "#050814" : undefined
+            }}
         >
             <div className="max-w-7xl mx-auto flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6 lg:px-8">
                 <Logo onClick={() => setIsOpen(false)} />
@@ -90,8 +110,9 @@ const NavBar = () => {
                 {/* Mobile Hamburger Button */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="md:hidden relative z-50 inline-flex flex-col items-center justify-center w-10 h-10 p-2 rounded-lg bg-slate-900/80 border border-cyan-500/20 text-cyan-400 cursor-pointer focus:outline-none"
+                    className="md:hidden relative z-[70] inline-flex flex-col items-center justify-center w-10 h-10 p-2 rounded-lg bg-slate-900 border border-cyan-500/20 text-cyan-400 cursor-pointer focus:outline-none"
                     aria-label="Toggle menu"
+                    aria-expanded={isOpen}
                 >
                     <div className="relative w-6 h-5 flex flex-col justify-between">
                         <motion.span
@@ -125,11 +146,12 @@ const NavBar = () => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
+                        initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
+                        exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.25 }}
-                        className="fixed inset-0 top-16 z-40 bg-[#050814]/98 backdrop-blur-xl px-6 py-8 md:hidden border-b border-cyan-500/20 flex flex-col justify-between"
+                        className="fixed inset-x-0 top-16 sm:top-20 bottom-0 z-[60] bg-[#050814] px-6 py-8 md:hidden border-b border-cyan-500/20 flex flex-col justify-between overflow-y-auto"
+                        style={{ backgroundColor: "#050814" }}
                     >
                         <div className="flex flex-col space-y-4">
                             <NavLinks setSheetOpen={setIsOpen} />
@@ -143,7 +165,7 @@ const NavBar = () => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="pt-6 border-t border-slate-800">
+                        <div className="pt-6 border-t border-slate-800/80">
                             <SocialLinks />
                         </div>
                     </motion.div>
