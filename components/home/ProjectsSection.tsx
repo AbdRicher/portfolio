@@ -67,21 +67,50 @@ const ProjectsSection = () => {
               onClick={() => setSelectedProject(project)}
             >
               <div>
-                {/* Top Row: Icon + External Link Arrow */}
+                {/* Top Row: Icon + External Actions */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-11 h-11 rounded-xl bg-cyan-950/60 border border-cyan-500/30 flex items-center justify-center text-2xl shadow-[0_0_12px_rgba(6,182,212,0.25)]">
                     {getProjectIcon(project.iconType)}
                   </div>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedProject(project);
-                    }}
-                    className="text-slate-400 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-xl font-mono"
-                    aria-label="Inspect project details"
-                  >
-                    ↗
-                  </button>
+                  <div className="flex items-center gap-2">
+                    {project.githubLink && (
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-2.5 py-1 rounded-lg text-xs font-mono text-slate-300 bg-slate-800/90 border border-slate-700 hover:border-cyan-400 hover:text-white transition-all flex items-center gap-1 shadow-sm"
+                        title="View GitHub Repository"
+                      >
+                        <span>GitHub</span>
+                        <span className="text-[10px]">↗</span>
+                      </a>
+                    )}
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-2.5 py-1 rounded-lg text-xs font-mono font-medium text-cyan-300 bg-cyan-950/70 border border-cyan-500/40 hover:bg-cyan-500/20 hover:border-cyan-300 transition-all flex items-center gap-1 shadow-sm"
+                        title="Visit Live Site"
+                      >
+                        <span>Live</span>
+                        <span className="text-[10px]">↗</span>
+                      </a>
+                    )}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedProject(project);
+                      }}
+                      className="w-8 h-8 rounded-lg bg-slate-800/40 hover:bg-slate-800 border border-transparent hover:border-cyan-500/30 text-slate-400 hover:text-cyan-400 flex items-center justify-center transition-all text-sm font-mono"
+                      aria-label="Inspect project details"
+                      title="Inspect full details"
+                    >
+                      ↗
+                    </button>
+                  </div>
                 </div>
 
                 {/* Project Title */}
@@ -126,6 +155,24 @@ const ProjectsSection = () => {
                       <span className="text-xs text-cyan-400/80 font-mono italic block pt-1">
                         +{project.solutions.length - 2} more solutions in details modal...
                       </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Status / Confidentiality Note */}
+                {(project.repositoryNote || project.liveUrlNote) && (
+                  <div className="mb-4 p-2.5 rounded-lg bg-[#060b18]/60 border border-slate-800/80 text-[11px] leading-relaxed text-slate-400 space-y-1">
+                    {project.repositoryNote && (
+                      <p className="flex items-center gap-1.5">
+                        <span className="text-amber-400/90 text-xs">🔒</span>
+                        <span>{project.repositoryNote}</span>
+                      </p>
+                    )}
+                    {project.liveUrlNote && (
+                      <p className="flex items-center gap-1.5">
+                        <span className="text-cyan-400/90 text-xs">ℹ️</span>
+                        <span>{project.liveUrlNote}</span>
+                      </p>
                     )}
                   </div>
                 )}

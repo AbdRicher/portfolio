@@ -163,6 +163,12 @@ const ProjectModal = ({ isOpen, project, setOpen }: ProjectModelProps) => {
                             </ul>
                         </div>
                     )}
+                    {(project.repositoryNote || project.liveUrlNote) && (
+                        <div className="space-y-1 text-xs text-slate-400">
+                            {project.repositoryNote && <p>{project.repositoryNote}</p>}
+                            {project.liveUrlNote && <p>{project.liveUrlNote}</p>}
+                        </div>
+                    )}
                     <Separator className="bg-slate-800" />
                     <div className="flex flex-wrap justify-between gap-2">
                         {project.link && (

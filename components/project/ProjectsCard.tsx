@@ -78,6 +78,13 @@ const ProjectCard = ({ project, onViewDetails }: ProjectCardProps) => {
           </div>
         )}
 
+        {(project.repositoryNote || project.liveUrlNote) && (
+          <div className="mb-4 space-y-1 text-[11px] leading-relaxed text-slate-400">
+            {project.repositoryNote && <p>{project.repositoryNote}</p>}
+            {project.liveUrlNote && <p>{project.liveUrlNote}</p>}
+          </div>
+        )}
+
         <motion.div className="flex flex-wrap gap-x-2 gap-y-2" initial="rest" whileHover="hover" animate="rest">
           {project.link && (
             <ProjectButton

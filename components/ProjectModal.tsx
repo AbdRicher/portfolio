@@ -115,26 +115,45 @@ export const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) =>
               </div>
             </div>
 
+            {(project.repositoryNote || project.liveUrlNote) && (
+              <div className="mt-6 p-3.5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2 text-xs text-slate-400">
+                {project.repositoryNote && (
+                  <div className="flex items-start gap-2">
+                    <span className="text-amber-400 font-mono text-xs flex-shrink-0">🔒 Code Repository:</span>
+                    <span className="text-slate-300">{project.repositoryNote}</span>
+                  </div>
+                )}
+                {project.liveUrlNote && (
+                  <div className="flex items-start gap-2">
+                    <span className="text-cyan-400 font-mono text-xs flex-shrink-0">ℹ️ Deployment Status:</span>
+                    <span className="text-slate-300">{project.liveUrlNote}</span>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Actions */}
-            <div className="mt-8 flex items-center justify-end gap-4">
+            <div className="mt-8 flex flex-wrap items-center justify-end gap-3">
               {project.githubLink && (
                 <Link
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors"
+                  className="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-200 bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700 hover:border-slate-500 flex items-center gap-1.5"
                 >
-                  GitHub Repository
+                  <span>GitHub Repository</span>
+                  <span>↗</span>
                 </Link>
               )}
-              {project.demoLink && (
+              {(project.link || project.demoLink) && (
                 <Link
-                  href={project.demoLink}
+                  href={(project.link || project.demoLink)!}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-slate-950 bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all"
+                  className="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 shadow-[0_0_15px_rgba(6,182,212,0.35)] transition-all flex items-center gap-1.5"
                 >
-                  Live Demo ↗
+                  <span>Visit Live Site</span>
+                  <span>↗</span>
                 </Link>
               )}
             </div>

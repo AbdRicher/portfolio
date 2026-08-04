@@ -21,7 +21,7 @@ export const projectsPageSchema = {
         "@id": `${hostedUrl}/projects#project-${index}`,
         name: project.title,
         description: project.description,
-        url: project.githubLink || hostedUrl,
+      url: project.link || project.demoLink || hostedUrl,
         applicationCategory: "WebApplication",
         programmingLanguage: project.techStack || [],
         codeRepository: project.githubLink,

@@ -20,7 +20,8 @@ export const projects: Project[] = [
     ],
     techStack: ["Python", "FastAPI", "Next.js", "Express.js", "LangGraph", "PostgreSQL", "PyTorch", "Vercel", "DigitalOcean"],
     technologies: [0, 1, 11, 12, 17, 19, 26, 44],
-    githubLink: "https://github.com/AbdRicher",
+    link: "https://luminalearn.me/",
+    githubLink: "https://github.com/AbdRicher/FYP_fastapi_backend",
     thumbnail: "/assets/images/projects/ai.jpg",
     achievements: [
       "Multi-agent orchestration with central coordinator and LangGraph routing",
@@ -47,7 +48,8 @@ export const projects: Project[] = [
     ],
     techStack: ["Node.js", "React.js", "GraphQL", "Render", "Shopify API"],
     technologies: [18, 3, 20, 44],
-    githubLink: "https://github.com/AbdRicher",
+    link: "https://erkalsjewellers.com/",
+    repositoryNote: "Repository is private and company confidential.",
     thumbnail: "/assets/images/projects/crm.jpg",
     achievements: [
       "Zero-downtime bulk sync of 10,000+ catalog items via GraphQL mutations",
@@ -74,7 +76,8 @@ export const projects: Project[] = [
     ],
     techStack: ["Node.js", "Express.js", "React.js", "PostgreSQL", "Sequelize ORM", "Shopify Polaris"],
     technologies: [18, 19, 3, 14, 20],
-    githubLink: "https://github.com/AbdRicher",
+    repositoryNote: "Repository is private and company confidential.",
+    liveUrlNote: "No live URL provided because this is a custom Shopify app.",
     thumbnail: "/assets/images/projects/shopify.jpg",
     achievements: [
       "Seamless Polaris UI embedded directly inside Shopify merchant admin",
@@ -101,7 +104,8 @@ export const projects: Project[] = [
     ],
     techStack: ["NestJS", "Next.js", "PostgreSQL", "WebSockets", "JWT"],
     technologies: [2, 1, 14, 15, 34],
-    githubLink: "https://github.com/AbdRicher",
+    repositoryNote: "Repository is private and company confidential.",
+    liveUrlNote: "No live URL provided because this is an internal enterprise system.",
     thumbnail: "/assets/images/projects/crm2.jpg",
     achievements: [
       "End-to-end multi-tenant isolation with JWT-secured endpoints",
@@ -128,7 +132,8 @@ export const projects: Project[] = [
     ],
     techStack: ["TypeScript", "Node.js", "NestJS", "Next.js", "PostgreSQL"],
     technologies: [0, 18, 2, 1, 14],
-    githubLink: "https://github.com/AbdRicher",
+    repositoryNote: "Repository is private and company confidential.",
+    liveUrlNote: "No live URL provided because this is an internal enterprise system.",
     thumbnail: "/assets/images/projects/crm.jpg",
     achievements: [
       "Granular RBAC permission hierarchy guarding sensitive enterprise client leads",
@@ -154,7 +159,8 @@ export const projects: Project[] = [
     ],
     techStack: ["Liquid", "Node.js", "Shopify Functions", "GraphQL", "Render"],
     technologies: [49, 18, 44],
-    githubLink: "https://github.com/AbdRicher",
+    link: "https://lammles.com/",
+    repositoryNote: "Repository is private and company confidential.",
     thumbnail: "/assets/images/projects/shopify.jpg",
     achievements: [
       "Sub-millisecond dynamic discount computation powered by Shopify Functions",
@@ -179,8 +185,8 @@ export const projects: Project[] = [
     ],
     techStack: ["JavaScript", "Full-Stack Development", "Responsive Design", "SEO"],
     technologies: [0, 1, 20, 68],
-    githubLink: "https://github.com/AbdRicher",
-    demoLink: "https://www.integriti.io/",
+    link: "https://integriti.io/",
+    repositoryNote: "Repository is private and company confidential.",
     thumbnail: "/assets/images/projects/frontend.jpg",
     achievements: [
       "95+ Google Lighthouse scores across Performance, Accessibility, and SEO",

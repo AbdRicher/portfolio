@@ -15,6 +15,8 @@ export interface Project {
     githubLink?: string;
     thumbnail?: string;
     demoLink?: string;
+    repositoryNote?: string;
+    liveUrlNote?: string;
     achievements?: string[];
     isLinkedin?: boolean;
     showGitStats?: boolean;
